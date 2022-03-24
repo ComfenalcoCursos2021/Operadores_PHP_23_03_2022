@@ -8,16 +8,18 @@
     $num2 = (int) rand(1,50);
 
 
-    $obj->divicion = (float) number_format(($num1 / $num2), 3, ".", "");
+    $obj->modulo = (float) number_format(($num1 % $num2), 3, ".", "");
 
     $obj->num2 = $num2;
-    // $num2 /= $num1;
+    // $num2 %= $num1;
     // settype($num2, "int");
 
 
     $obj->num1 = $num1;
-    // $obj->divicion = (float) number_format($num2, 3, ".", "");
+    // $obj->modulo = (float) number_format($num2, 3, ".", "");
     print_r(json_encode($obj, JSON_PRETTY_PRINT));
+
+
 
 
 ?>
