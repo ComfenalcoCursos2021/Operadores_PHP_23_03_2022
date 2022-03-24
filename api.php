@@ -2,18 +2,22 @@
     header('Access-Control-Allow-Origin: *');
     header("Content-type: application/json");
     $obj = (object) [
-        "num" => (int) rand(1, 50),
         "server" => (string) $_SERVER["HTTP_HOST"]
     ];
-    $obj->resultado = $obj->num;
+    $num1 = (int) rand(1,50);
+    $num2 = (float) 5.332;
 
-    // $num = (int) 23;
-    // $num = (int) rand(1, 50);
-    // $resultado = (int) $num;
+    // $obj->suma = (int) ($num1 + $num2);
+
+    $obj->num2 = $num2;
+
+    $num2 += $num1;
+    settype($num2, "int");
 
 
-
+    $obj->num1 = $num1;
+    $obj->suma = $num2;
     print_r(json_encode($obj, JSON_PRETTY_PRINT));
-    // print_r($obj);
+
 
 ?>
