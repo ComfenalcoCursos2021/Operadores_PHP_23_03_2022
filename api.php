@@ -2,21 +2,36 @@
     header('Access-Control-Allow-Origin: *');
     header("Content-type: application/json;charset=utf-8");
     $obj = (object) [
-        "server" => (string) $_SERVER["HTTP_HOST"]
+        "server" => (string) $_SERVER["HTTP_HOST"],
+        "formulario" => json_decode(file_get_contents("php://input"))
     ];
-    $num1 = (float) (mt_rand(1,50).".".mt_rand(100,999));
-    $num2 = (int) rand(1,50);
+
+    switch (strtoupper($obj->formulario->opcion)) {
+        case 'SUMA':
+            $obj->Suma = (int) ($obj->formulario->num1 + $obj->formulario->num2);
+            break;
+        case 'RESTA':
+            $obj->Resta = (int) ($obj->formulario->num1 - $obj->formulario->num2);
+            break;
+        case 'MULTIPLICACION':
+            $obj->Multiplicacion = (int) ($obj->formulario->num1 * $obj->formulario->num2);
+            break;
+        case 'EXPONENCIALIZACION':
+            $obj->Exponencializacion = (int) ($obj->formulario->num1 ** $obj->formulario->num2);
+            break;
+        case 'DIVISION':
+            $obj->Division = (float) ($obj->formulario->num1 / $obj->formulario->num2);
+            break;
+        case 'MODULO':
+            $obj->Modulo = (int) ($obj->formulario->num1 % $obj->formulario->num2);
+            break;
+        default:
+            $obj->No = (string) " encontrada :(";
+            break;
+    }
 
 
-    $obj->modulo = (float) number_format(($num1 % $num2), 3, ".", "");
 
-    $obj->num2 = $num2;
-    // $num2 %= $num1;
-    // settype($num2, "int");
-
-
-    $obj->num1 = $num1;
-    // $obj->modulo = (float) number_format($num2, 3, ".", "");
     print_r(json_encode($obj, JSON_PRETTY_PRINT));
 
 
