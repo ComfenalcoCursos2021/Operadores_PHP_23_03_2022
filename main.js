@@ -1,15 +1,26 @@
 // https://comfenalcocursos2022.000webhostapp.com/Operadores_php_23_03_2022/api.php
 
-let enviar = async function(){
+let from = document.querySelector("#OperadorLogicoAND");
+from.addEventListener("submit", (e)=>{
+    let input = Array.from(e.target);
+    input.pop();
+    let data = {};
+    input.forEach(element => {
+        data[element.id] = Number(element.value);
+    });
+    console.log(data);
     let confi = {
-        method: "POST", 
-        body: JSON.stringify({
-            num1 : 6,
-            num2: 6
-        })
+        method: from.method, 
+        body: JSON.stringify(data)
     }
-    let peticion = await fetch("api.php", confi);
+    enviar([from.action,confi]);
+    e.preventDefault();
+})
+
+let enviar = async(confi)=>{
+    let peticion = await fetch(...confi);
     let json = await peticion.text();
-    document.body.innerHTML = json;
+    document.querySelector(".mensaje").insertAdjacentHTML("beforeend", `${json} <br>`);
 }
-enviar();
+
+

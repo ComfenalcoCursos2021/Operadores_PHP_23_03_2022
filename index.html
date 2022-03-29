@@ -8,7 +8,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   
+    <h2>INPUT</h2>
+    <hr>
+    <form id="OperadorLogicoAND" method="POST" action="api.php">
+        <label for="A">A</label>
+        <input id="A" type="number" min="0" max="1" maxlength="1" required>
+        <label for="B">B</label>
+        <input id="B" type="number" min="0" max="1" maxlength="1" required>
+    </form>
+    <input type="submit" form="OperadorLogicoAND">
+    <hr>
+    <h2>OUTPUT</h2>
+    <div class="mensaje">
+
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
