@@ -10,6 +10,7 @@
     //  [""]                    []
     // new stdClass();
     // (object) []
+    $_DATA->SERVER = (string) $_SERVER["HTTP_HOST"];
     $_DATA->A_AND_B = (int) ($_DATA->A and $_DATA->B) ? 1 : 0;
 
 
