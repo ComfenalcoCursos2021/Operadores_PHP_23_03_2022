@@ -11,7 +11,21 @@
     // new stdClass();
     // (object) []
     $_DATA->SERVER = (string) $_SERVER["HTTP_HOST"];
-    $_DATA->A_AND_B = (int) ($_DATA->A and $_DATA->B) ? 1 : 0;
+    $_DATA->RES = (int) ($_DATA->OPERADOR == "and") 
+                        ? (
+                            ($_DATA->A and $_DATA->B) 
+                                ? 1 
+                                : 0
+                            ) 
+                        : (
+                            ($_DATA->OPERADOR == "or")  
+                                ?(
+                                    ($_DATA->A || $_DATA->B) 
+                                    ? 1 
+                                    : 0
+                                )
+                                : ""
+                        );
 
 
     echo(json_encode($_DATA, JSON_PRETTY_PRINT));
